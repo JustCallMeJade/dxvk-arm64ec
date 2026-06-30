@@ -5,7 +5,7 @@ install_dir="$workdir/install"
 
 mkdir -p "$workdir"
 
-cd workdir
+cd "$workdir"
 
 apt update && apt upgrade -y -qq
 
