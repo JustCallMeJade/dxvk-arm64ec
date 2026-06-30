@@ -20,3 +20,33 @@ export PATH="$PATH:$workdir/llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64/bin"
 git clone --recursive --depth=1 https://github.com/doitsujin/DXVK
 
 cd DXVK
+
+rm -f build-win64
+
+cat << 'EOF' > build-win64.txt
+[binaries]
+c = 'arm64ec-w64-mingw32-gcc'
+cpp = 'arm64ec-w64-mingw32-g++'
+ar = 'arm64ec-w64-mingw32-ar'
+strip = 'arm64ec-w64-mingw32-strip'
+windres = 'arm64ec-w64-mingw32-windres'
+
+[properties]
+needs_exe_wrapper = true
+
+[host_machine]
+system = 'windows'
+cpu_family = 'aarch64'
+cpu = 'armv8'
+endian = 'little'
+EOF
+
+meson setup dxvk-arm64ec -Dbuildtype=release -Dstrip=enabled --prefix="$install_dir" --cross-file build-win64.txt
+
+ninja -C dxvk-arm64ec install
+
+cd dxvk-arm64ec
+
+mv bin system32
+
+zip -r dxvk-arm64ec.zip system32/
