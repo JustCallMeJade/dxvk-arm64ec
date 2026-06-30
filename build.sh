@@ -3,7 +3,7 @@
 workdir="$(pwd)/dxvk-workdir"
 install_dir="$workdir/install"
 
-rm rf "$workdir"
+rm -rf "$workdir"
 mkdir -p "$workdir"
 cd "$workdir"
 
