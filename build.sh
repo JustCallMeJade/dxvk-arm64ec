@@ -9,7 +9,7 @@ cd "$workdir"
 
 apt update && apt upgrade -y -qq
 
-apt install build-essential cmake wget unzip tar meson ninja-build glslang-tools git -y -qq
+apt install build-essential cmake wget unzip tar meson ninja-build glslang-tools git zip -y -qq
 
 echo "installing mingw cross compilers"
 
