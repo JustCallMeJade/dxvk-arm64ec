@@ -50,3 +50,5 @@ cd dxvk-arm64ec
 mv bin system32
 
 zip -r dxvk-arm64ec.zip system32/
+
+exit 0
