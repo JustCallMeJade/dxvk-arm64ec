@@ -4,7 +4,6 @@ workdir="$(pwd)/dxvk-workdir"
 install_dir="$workdir/install"
 
 mkdir -p "$workdir"
-
 cd "$workdir"
 
 apt update && apt upgrade -y -qq
@@ -13,7 +12,7 @@ apt install build-essential cmake wget unzip tar meson ninja-build glslang-tools
 
 wget https://github.com/mstorsjo/llvm-mingw/releases/download/20260616/llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64.tar.xz -qnv
 
-tar -xf llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64.tar.xz 
+tar -xf llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64.tar.xz
 
 export PATH="$PATH:$workdir/llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64/bin"
 
@@ -41,14 +40,12 @@ cpu = 'armv8'
 endian = 'little'
 EOF
 
-meson setup dxvk-arm64ec -Dbuildtype=release -Dstrip=enabled --prefix="$install_dir" --cross-file build-win64.txt
+meson setup dxvk-arm64ec -Dbuildtype=release -Dstrip=enabled -Denable_d3d8=false --prefix="$install_dir" --cross-file build-win64.txt
 
 ninja -C dxvk-arm64ec install
 
-cd dxvk-arm64ec
+cd "$install_dir"
 
 mv bin system32
 
-zip -r dxvk-arm64ec.zip system32/
-
-exit 0
+zip -r "$workdir/dxvk-arm64ec.zip" system32
