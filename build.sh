@@ -16,3 +16,7 @@ wget https://github.com/mstorsjo/llvm-mingw/releases/download/20260616/llvm-ming
 tar -xf llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64.tar.xz 
 
 export PATH="$PATH:$workdir/llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64/bin"
+
+git clone --recursive --depth=1 https://github.com/doitsujin/DXVK
+
+cd DXVK
