@@ -47,7 +47,7 @@ EOF
 
 echo "configuring and compiling"
 
-meson setup dxvk-arm64ec -Dbuildtype=release -Dstrip=enabled -Denable_d3d8=false --prefix="$install_dir" --cross-file build-win64.txt
+meson setup dxvk-arm64ec -Dbuildtype=release -Dstrip=true -Denable_d3d8=false --prefix="$install_dir" --cross-file build-win64.txt
 
 ninja -C dxvk-arm64ec install
 
