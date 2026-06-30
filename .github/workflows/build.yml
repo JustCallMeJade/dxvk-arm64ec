@@ -5,17 +5,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-26.04-arm
+    runs-on: ubuntu-latest
+
+    container:
+      image: debian:sid
 
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Make script executable
-        run: chmod +x build.sh
-
-      - name: Run build script
-        run: ./build.sh
+      - name: Run script
+        run: chmod +x build.sh && ./build.sh
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
