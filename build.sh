@@ -56,7 +56,7 @@ cd "$install_dir"
 
 mv bin system32
 
-cat > profile.json << 'EOF'
+cat << EOF > profile.json
 {
   "type": "DXVK",
   "versionName": "dxvk-$VERSION-arm64ec",
@@ -65,23 +65,23 @@ cat > profile.json << 'EOF'
   "files": [
     {
       "source": "system32/d3d8.dll",
-      "target": "${system32}/d3d8.dll"
+      "target": "\${system32}/d3d8.dll"
     },
     {
       "source": "system32/d3d9.dll",
-      "target": "${system32}/d3d9.dll"
+      "target": "\${system32}/d3d9.dll"
     },
     {
       "source": "system32/d3d10core.dll",
-      "target": "${system32}/d3d10core.dll"
+      "target": "\${system32}/d3d10core.dll"
     },
     {
       "source": "system32/d3d11.dll",
-      "target": "${system32}/d3d11.dll"
+      "target": "\${system32}/d3d11.dll"
     },
     {
       "source": "system32/dxgi.dll",
-      "target": "${system32}/dxgi.dll"
+      "target": "\${system32}/dxgi.dll"
     }
   ]
 }
