@@ -206,10 +206,10 @@ glsl_generator = generator(
   arguments : glsl_args,
 )
 
-dxvk_version = vcs_tag(
-  command: ['git', 'describe', '--dirty=+'],
-  input:  'version.h.in',
-  output: 'version.h',
+configure_file(
+    input: 'version.h.in',
+    output: 'version.h',
+    copy: true,
 )
 
 conf_data = configuration_data()
