@@ -48,6 +48,12 @@ EOF
 
 echo "configuring and compiling"
 
+wget https://gitlab.com/Ph42oN/dxvk-gplasync/-/raw/main/patches/dxvk-gplasync-3.0-1.patch
+wget https://gitlab.com/Ph42oN/dxvk-gplasync/-/raw/main/patches/global-dxvk.conf.patch
+
+patch -p1 -i dxvk-gplasync-3.0-1.patch
+patch -p1 -i global-dxvk.conf.patch
+
 meson setup dxvk-arm64ec -Dbuildtype=release -Dstrip=true --prefix="$install_dir" --cross-file build-win64.txt
 
 ninja -C dxvk-arm64ec install
@@ -59,9 +65,9 @@ mv bin system32
 cat << EOF > profile.json
 {
   "type": "DXVK",
-  "versionName": "dxvk-$VERSION-arm64ec",
+  "versionName": "dxvk-$VERSION-arm64ec-gplasync",
   "versionCode": 1,
-  "description": "dxvk-$VERSION-arm64ec compiled by source + arm64ec",
+  "description": "dxvk-$VERSION-arm64ec-gplasync compiled by source + arm64ec + gplasync",
   "files": [
     {
       "source": "system32/d3d8.dll",
