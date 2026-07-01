@@ -21,4 +21,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dxvk-arm64ec
-          path: dxvk-workdir/dxvk-*.wcp
+          path: dxvk-workdir/install/dxvk-*.wcp
