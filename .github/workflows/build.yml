@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run script
-        run: apt update && apt install sudo -y && chmod +x build.sh && ./build.sh
+        run: apt update && apt install sudo -y && chmod +x build.sh && ./build.sh && echo VERSION_NAME="$VERSION" >> $GITHUB_ENV
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
