@@ -8,7 +8,7 @@ rm -rf "$workdir"
 mkdir -p "$workdir"
 cd "$workdir"
 
-sudo apt update && apt upgrade -y -qq
+sudo apt update && sudo apt upgrade -y -qq
 
 sudo apt install build-essential cmake wget unzip tar meson ninja-build glslang-tools git zip -y -qq
 
@@ -90,7 +90,6 @@ EOF
 tar -cJf dxvk-$VERSION-arm64ec.tar.xz system32 profile.json
 
 mv dxvk-$VERSION-arm64ec.tar.xz dxvk-$VERSION-arm64ec.wcp
-
 
 cd
 
