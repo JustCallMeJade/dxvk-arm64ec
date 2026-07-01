@@ -1,0 +1,28 @@
+{
+  "type": "DXVK",
+  "versionName": "dxvk-2.3.1-arm64ec-async",
+  "versionCode": 1,
+  "description": "dxvk-2.3.1-arm64ec-async",
+  "files": [
+  	{
+      "source": "system32/d3d8.dll",
+      "target": "${system32}/d3d8.dll"
+    },
+   {
+      "source": "system32/d3d9.dll",
+      "target": "${system32}/d3d9.dll"
+    },
+	{
+      "source": "system32/d3d10core.dll",
+      "target": "${system32}/d3d10core.dll"
+    },
+	{
+      "source": "system32/d3d11.dll",
+      "target": "${system32}/d3d11.dll"
+    },
+	{
+      "source": "system32/dxgi.dll",
+      "target": "${system32}/dxgi.dll"
+    }
+  ]
+}
