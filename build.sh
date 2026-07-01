@@ -99,4 +99,6 @@ mv dxvk-$VERSION-arm64ec.tar.xz dxvk-$VERSION-arm64ec.wcp
 
 cd
 
+echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
 exit 0
