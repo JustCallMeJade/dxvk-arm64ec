@@ -55,7 +55,41 @@ cd "$install_dir"
 
 mv bin system32
 
-zip -r "$workdir/dxvk-arm64ec.zip" system32
+cat > profile.json << 'EOF'
+{
+  "type": "DXVK",
+  "versionName": "dxvk-$VERSION-arm64ec",
+  "versionCode": 1,
+  "description": "dxvk-$VERSION-arm64ec compiles by source + arm64ec",
+  "files": [
+    {
+      "source": "system32/d3d8.dll",
+      "target": "${system32}/d3d8.dll"
+    },
+    {
+      "source": "system32/d3d9.dll",
+      "target": "${system32}/d3d9.dll"
+    },
+    {
+      "source": "system32/d3d10core.dll",
+      "target": "${system32}/d3d10core.dll"
+    },
+    {
+      "source": "system32/d3d11.dll",
+      "target": "${system32}/d3d11.dll"
+    },
+    {
+      "source": "system32/dxgi.dll",
+      "target": "${system32}/dxgi.dll"
+    }
+  ]
+}
+EOF
+
+tar -cJf dxvk-$VERSION-arm64ec.tar.xz system32 profile.json
+
+mv dxvk-$VERSION-arm64ec.tar.xz dxvk-$VERSION-arm64ec.wcp
+
 
 cd
 
