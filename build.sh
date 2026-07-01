@@ -2,14 +2,15 @@
 
 workdir="$(pwd)/dxvk-workdir"
 install_dir="$workdir/install"
+VERSION="3.0"
 
 rm -rf "$workdir"
 mkdir -p "$workdir"
 cd "$workdir"
 
-apt update && apt upgrade -y -qq
+sudo apt update && apt upgrade -y -qq
 
-apt install build-essential cmake wget unzip tar meson ninja-build glslang-tools git zip -y -qq
+sudo apt install build-essential cmake wget unzip tar meson ninja-build glslang-tools git zip -y -qq
 
 echo "installing mingw cross compilers"
 
@@ -17,7 +18,7 @@ wget https://github.com/mstorsjo/llvm-mingw/releases/download/20260616/llvm-ming
 
 tar -xf llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64.tar.xz
 
-export PATH="$PATH:$workdir/llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64/bin"
+sudo export PATH="$PATH:$workdir/llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64/bin"
 
 echo "cloning dxvk"
 
@@ -25,7 +26,7 @@ git clone --recursive --depth=1 https://github.com/doitsujin/DXVK
 
 cd DXVK
 
-rm -f build-win64
+sudo rm -f build-win64
 
 cat << 'EOF' > build-win64.txt
 [binaries]
@@ -47,7 +48,7 @@ EOF
 
 echo "configuring and compiling"
 
-meson setup dxvk-arm64ec -Dbuildtype=release -Dstrip=true -Denable_d3d8=false --prefix="$install_dir" --cross-file build-win64.txt
+meson setup dxvk-arm64ec -Dbuildtype=release -Dstrip=true --prefix="$install_dir" --cross-file build-win64.txt
 
 ninja -C dxvk-arm64ec install
 
@@ -60,7 +61,7 @@ cat > profile.json << 'EOF'
   "type": "DXVK",
   "versionName": "dxvk-$VERSION-arm64ec",
   "versionCode": 1,
-  "description": "dxvk-$VERSION-arm64ec compiles by source + arm64ec",
+  "description": "dxvk-$VERSION-arm64ec compiled by source + arm64ec",
   "files": [
     {
       "source": "system32/d3d8.dll",
