@@ -26,7 +26,7 @@ git clone --recursive --depth=1 https://github.com/doitsujin/DXVK
 
 cd DXVK
 
-sudo rm -f build-win64
+sudo rm -f build-win64.txt
 
 cat << 'EOF' > build-win64.txt
 [binaries]
