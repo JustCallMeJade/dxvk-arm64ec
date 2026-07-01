@@ -1,4 +1,4 @@
-name: Build
+name: Build dxvk-arm64ec WCP
 
 on:
   workflow_dispatch:
