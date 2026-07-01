@@ -1,6 +1,6 @@
 {
   "type": "DXVK",
-  "versionName": "dxvk-2.3.1-arm64ec-async",
+  "versionName": "dxvk-$VERSION-arm64ec-async",
   "versionCode": 1,
   "description": "dxvk-2.3.1-arm64ec-async",
   "files": [
