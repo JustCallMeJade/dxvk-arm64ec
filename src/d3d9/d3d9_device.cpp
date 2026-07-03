@@ -5482,8 +5482,7 @@ namespace dxvk {
     // (TODO: Apparently this is meant to happen for DYNAMIC too but I am not sure
     //  how that works given it is meant to be a DIRECT access..?)
     const bool respectUserBounds = !(Flags & D3DLOCK_DISCARD) &&
-                                    SizeToLock != 0 &&
-                                    (desc.Pool == D3DPOOL_MANAGED || (desc.Usage & D3DUSAGE_DYNAMIC));
+                                    SizeToLock != 0;
 
     // If we don't respect the bounds, encompass it all in our tests/checks
     // These values may be out of range and don't get clamped.
@@ -8439,10 +8438,13 @@ namespace dxvk {
       if (flags.test(D3D9TextureStageStateFlag::UsesTemp))
         stageTextures |= tempTextures;
 
-      if (resultIsTemp)
-        tempTextures = stageTextures;
-      else
-        currTextures = stageTextures;
+      // Bump env forwards the previous value unmodified
+      auto& dstMask = resultIsTemp ? tempTextures : currTextures;
+
+      if (colorOp == D3DTOP_BUMPENVMAP || colorOp == D3DTOP_BUMPENVMAPLUMINANCE)
+        stageTextures |= dstMask;
+
+      dstMask = stageTextures;
 
       // Ensure subsequent stage gets bound for premodulate
       premodulateColor = colorOp == D3DTOP_PREMODULATE;
