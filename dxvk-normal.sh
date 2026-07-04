@@ -8,7 +8,7 @@ rm -rf "$workdir"
 mkdir -p "$workdir"
 cd "$workdir"
 
-sudo apt update && sudo apt upgrade -y -qq
+sudo apt update -qq
 
 sudo apt install build-essential cmake wget unzip tar meson ninja-build glslang-tools git zip -y -qq
 
