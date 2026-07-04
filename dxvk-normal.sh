@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 workdir="$(pwd)/dxvk-workdir"
 install_dir="$workdir/install"
