@@ -2,7 +2,7 @@
 
 workdir="$(pwd)/dxvk-workdir"
 install_dir="$workdir/install"
-VERSION="3.0"
+VERSION="2.4"
 
 rm -rf "$workdir"
 mkdir -p "$workdir"
@@ -22,9 +22,13 @@ export PATH="$PATH:$workdir/llvm-mingw-20260616-ucrt-ubuntu-22.04-aarch64/bin"
 
 echo "cloning dxvk"
 
-git clone --recursive --depth=1 https://github.com/doitsujin/DXVK
+git clone --recursive https://github.com/doitsujin/DXVK
 
 cd DXVK
+
+git fetch --tags
+
+git switch -c dxvk-2.4 v2.4 # Dxvk 2.4.1+ has a massive performance regression 
 
 rm -f build-win64.txt
 
